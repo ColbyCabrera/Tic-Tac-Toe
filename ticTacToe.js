@@ -1,26 +1,57 @@
-const game = (() => {
-  const Gameboard = {
-    board: ["X", "O", "X", "O", "X", "O", "X", "O", "X"]
-  };
+const playerFactory = (sym) => {
 
-  const getBoard = () => {
-    return Gameboard.board;
-  };
-
-  return { getBoard };
-})();
-
-const playerFactory = (playerNumber) => {
   let symbol;
 
   const setSymbol = (character) => {
     symbol = character;
   };
 
-  const move = (symbol) => {};
+  const getSymbol = () => {
+    return symbol;
+  };
 
-  return { setSymbol, move };
+  setSymbol(sym);
+
+  return { setSymbol, getSymbol };
 };
+
+const game = (() => {
+  let turnNumber = 1;
+  let player1, player2;
+
+  const Gameboard = {
+    board: ["", "", "", "", "", "", "", "", ""],
+  };
+
+  const createPlayers = () => {
+    player1 = playerFactory("X");
+    player2 = playerFactory("O");
+  };
+
+  const getBoard = () => {
+    return Gameboard.board;
+  };
+
+  const addMove = (event) => {
+    let symbol;
+
+    if (turnNumber % 2 === 0) {
+      symbol = player1.getSymbol();
+    } else {
+      symbol = player2.getSymbol();
+    }
+
+    console.log(symbol);
+
+    index = event.target.id;
+    Gameboard.board[index] = symbol;
+    turnNumber++;
+
+    displayController.render();
+  };
+
+  return { getBoard, addMove, createPlayers };
+})();
 
 const displayController = (() => {
   const init = () => {
@@ -38,6 +69,7 @@ const displayController = (() => {
       gridElement.classList.add(row + "y");
       board.appendChild(gridElement);
       gridElement.appendChild(elementText);
+      gridElement.addEventListener("click", game.addMove);
     }
   };
 
@@ -45,8 +77,8 @@ const displayController = (() => {
     const board = game.getBoard();
 
     board.forEach((element, index) => {
-        const gridElement = document.getElementById(index);
-        gridElement.firstChild.textContent = board[index];
+      const gridElement = document.getElementById(index);
+      gridElement.firstChild.textContent = board[index];
     });
   };
 
@@ -55,5 +87,6 @@ const displayController = (() => {
   return { render };
 })();
 
-
-displayController.render();
+const startGame = (() => {
+  game.createPlayers();
+})();
