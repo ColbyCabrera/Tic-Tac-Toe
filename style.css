@@ -3,3 +3,42 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+
+}
+
+h1 {
+    font-size: 6rem;
+}
+
+.game__container {
+    height: 100%;    
+}
+
+.gameboard {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.4rem;
+    width: 25rem;
+    height: 25rem;
+    background-color: #000;
+}
+
+.grid-element {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-element p {
+    font-size: 6rem;
+    font-weight: bold;
+}
