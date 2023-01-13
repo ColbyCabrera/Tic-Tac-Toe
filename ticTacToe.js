@@ -34,10 +34,10 @@ const game = (() => {
 
   const createPlayers = () => {
     let name;
-  
+
     player1 = playerFactory("X");
     player1.setName("Player 1");
-   
+
     player2 = playerFactory("O");
     player2.setName("Player 2");
   };
@@ -55,7 +55,7 @@ const game = (() => {
     const name2 = document.getElementById("player2");
 
     player1.setName(name1.value);
-    
+
     player2.setName(name2.value);
 
     name1.value = " ";
@@ -89,11 +89,11 @@ const game = (() => {
 
       displayController.render();
 
-      if (turnNumber === 10) {
-        displayController.declareWinner("Tie");
-      } else if (isOver(index)) {
+      if (isOver(index)) {
         htmlBoard.style.pointerEvents = "none";
         displayController.declareWinner(getPlayerName(turnNumber % 2));
+      } else if (turnNumber === 10) {
+        displayController.declareWinner("Nobody");
       }
     }
   };
@@ -174,7 +174,14 @@ const game = (() => {
     return over;
   };
 
-  return { getBoard, resetBoard, addMove, createPlayers, getPlayerName, setPlayerNames };
+  return {
+    getBoard,
+    resetBoard,
+    addMove,
+    createPlayers,
+    getPlayerName,
+    setPlayerNames,
+  };
 })();
 
 const displayController = (() => {
@@ -229,7 +236,7 @@ const displayController = (() => {
 
 const startGame = (() => {
   const replayButton = document.getElementById("replay");
-  const nameSubmit = document.getElementById("name-submit"); 
+  const nameSubmit = document.getElementById("name-submit");
   nameSubmit.addEventListener("click", game.setPlayerNames);
   replayButton.addEventListener("click", game.resetBoard);
   game.createPlayers();
