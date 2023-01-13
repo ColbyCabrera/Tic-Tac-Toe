@@ -5,30 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,500;1,600&family=Rubik+80s+Fade&display=swap"
+      rel="stylesheet"
+    />
     <title>Tic-Tac-Toe</title>
   </head>
   <body>
     <h1>Tic Tac Toe</h1>
-    <div class="game__container">
+    <div class="game-container" id="game-container">
       <div class="gameboard" id="gameboard"></div>
       <button type="button" id="replay">Replay</button>
       <div class="name-input">
         <form action="">
-            <ul>
-                <li>
-                    <label for="name">Player 1's name:</label>
-                    <input type="text" name="player1" id="player1" />
-                </li>
-                <li>
-                    <label for="name">Player 2's name:</label>
-                    <input type="text" name="player2" id="player2" />
-                </li>
-                <li>
-                    <button type="button" id="name-submit">Submit</button>
-                </li>
-            </ul>
-            
-            
+          <ul>
+            <li>
+              <label for="name">Player 1's name:</label>
+              <input type="text" name="player1" id="player1" />
+            </li>
+            <li>
+              <label for="name">Player 2's name:</label>
+              <input type="text" name="player2" id="player2" />
+            </li>
+            <li>
+              <button type="button" id="name-submit">Submit</button>
+            </li>
+          </ul>
         </form>
       </div>
     </div>

@@ -9,13 +9,26 @@ html {
 }
 
 body {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    background-color: #000;
+    color: #eee;
 }
 
 h1 {
-  font-size: 6rem;
+  font-size: 8rem;
+  font-family: 'Rubik 80s Fade', cursive;
+  color: #fff;
+  margin-top: 2.4rem;
+  font-weight: 400;
 }
 
-.game__container {
+#winner-text {
+    font-size: 4.8rem;
+    margin-top: 2rem;
+}
+
+.game-container {
   height: 100%;
 }
 
@@ -24,13 +37,15 @@ h1 {
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0.4rem;
-  width: 25rem;
-  height: 25rem;
-  background-color: #000;
+  width: 30rem;
+  height: 30rem;
+  background-color: #eee;
+  margin: 6rem auto;
+  margin-bottom: 2.4rem;
 }
 
 .grid-element {
-  background-color: #fff;
+  background-color: #000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,4 +54,69 @@ h1 {
 .grid-element p {
   font-size: 6rem;
   font-weight: bold;
+}
+
+form {
+    margin-top: 6rem;
+}
+
+form ul {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   list-style: none;
+}
+
+form li {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1.4rem;
+}
+
+button {
+    font-size: 2.4rem;
+    padding: 0.3rem 2.4rem;
+    border: 2px solid #fff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    background-color: #000;
+    color: #eee;
+    transition: all 0.2s;
+}
+
+button:hover {
+    transform: translateY(2px);
+}
+
+button:active {
+    background-color: #555;
+    transform: translateY(4px);
+}
+
+label {
+    font-size: 1.8rem;
+}
+
+input {
+    width: 20rem;
+    height: 2.8rem;
+    font-size: 1.8rem;
+    border-radius: 0;
+    padding-left: 0.4rem;
+    border: 2px solid #fff;
+    background-color: #000;
+    outline: none;
+    color: #fff;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #000 inset !important;
+}
+
+input:-webkit-autofill{
+    -webkit-text-fill-color: #eee!important;
 }
