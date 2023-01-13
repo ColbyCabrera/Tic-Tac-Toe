@@ -1,5 +1,6 @@
 const playerFactory = (sym) => {
   let symbol;
+  let name;
 
   const setSymbol = (character) => {
     symbol = character;
@@ -9,9 +10,17 @@ const playerFactory = (sym) => {
     return symbol;
   };
 
+  const setName = (n) => {
+    name = n;
+  };
+
+  const getName = () => {
+    return name;
+  };
+
   setSymbol(sym);
 
-  return { setSymbol, getSymbol };
+  return { setSymbol, getSymbol, setName, getName };
 };
 
 const game = (() => {
@@ -24,8 +33,21 @@ const game = (() => {
   };
 
   const createPlayers = () => {
+    let name;
+    name = prompt("Enter a name for player 1");
     player1 = playerFactory("X");
+    player1.setName(name);
+    name = prompt("Enter a name for player 2");
     player2 = playerFactory("O");
+    player2.setName(name);
+  };
+
+  const getPlayerName = (player) => {
+    if (player === 0) {
+      return player1.getName();
+    } else {
+      return player2.getName();
+    }
   };
 
   const getBoard = () => {
@@ -34,6 +56,8 @@ const game = (() => {
 
   const resetBoard = () => {
     Gameboard.board = ["", "", "", "", "", "", "", "", ""];
+    turnNumber = 1;
+    displayController.clear();
   };
 
   const addMove = (event) => {
@@ -52,8 +76,12 @@ const game = (() => {
       turnNumber++;
 
       displayController.render();
-      if (isOver(index)) {
+
+      if (turnNumber === 10) {
+        displayController.declareWinner("Tie");
+      } else if (isOver(index)) {
         htmlBoard.style.pointerEvents = "none";
+        displayController.declareWinner(getPlayerName(turnNumber % 2));
       }
     }
   };
@@ -134,7 +162,7 @@ const game = (() => {
     return over;
   };
 
-  return { getBoard, resetBoard, addMove, createPlayers };
+  return { getBoard, resetBoard, addMove, createPlayers, getPlayerName };
 })();
 
 const displayController = (() => {
@@ -161,8 +189,11 @@ const displayController = (() => {
   const clear = () => {
     const board = document.getElementById("gameboard");
     board.innerHTML = "";
-    game.resetBoard();
     init();
+  };
+
+  const declareWinner = (winner) => {
+    console.log(winner);
   };
 
   const render = () => {
@@ -174,10 +205,12 @@ const displayController = (() => {
     });
   };
 
-  return { render, init, clear };
+  return { render, init, clear, declareWinner };
 })();
 
 const startGame = (() => {
+  const replayButton = document.getElementById("replay");
+  replayButton.addEventListener("click", game.resetBoard);
   game.createPlayers();
   displayController.init();
 })();
