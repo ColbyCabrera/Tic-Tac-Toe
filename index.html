@@ -1,18 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Tic-Tac-Toe</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Tic Tac Toe</h1>
     <div class="game__container">
-        <div class="gameboard" id="gameboard"></div>
-        <button type="button" id="replay">Replay</button>
+      <div class="gameboard" id="gameboard"></div>
+      <button type="button" id="replay">Replay</button>
+      <div class="name-input">
+        <form action="">
+            <ul>
+                <li>
+                    <label for="name">Player 1's name:</label>
+                    <input type="text" name="player1" id="player1" />
+                </li>
+                <li>
+                    <label for="name">Player 2's name:</label>
+                    <input type="text" name="player2" id="player2" />
+                </li>
+                <li>
+                    <button type="button" id="name-submit">Submit</button>
+                </li>
+            </ul>
+            
+            
+        </form>
+      </div>
     </div>
     <script src="ticTacToe.js"></script>
-</body>
+  </body>
 </html>

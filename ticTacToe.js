@@ -34,12 +34,12 @@ const game = (() => {
 
   const createPlayers = () => {
     let name;
-    name = prompt("Enter a name for player 1");
+  
     player1 = playerFactory("X");
-    player1.setName(name);
-    name = prompt("Enter a name for player 2");
+    player1.setName("Player 1");
+   
     player2 = playerFactory("O");
-    player2.setName(name);
+    player2.setName("Player 2");
   };
 
   const getPlayerName = (player) => {
@@ -48,6 +48,15 @@ const game = (() => {
     } else {
       return player2.getName();
     }
+  };
+
+  const setPlayerNames = () => {
+    const name1 = document.getElementById("player1").value;
+    const name2 = document.getElementById("player2").value;
+
+    player1.setName(name1);
+    
+    player2.setName(name2);
   };
 
   const getBoard = () => {
@@ -162,7 +171,7 @@ const game = (() => {
     return over;
   };
 
-  return { getBoard, resetBoard, addMove, createPlayers, getPlayerName };
+  return { getBoard, resetBoard, addMove, createPlayers, getPlayerName, setPlayerNames };
 })();
 
 const displayController = (() => {
@@ -210,6 +219,8 @@ const displayController = (() => {
 
 const startGame = (() => {
   const replayButton = document.getElementById("replay");
+  const nameSubmit = document.getElementById("name-submit"); 
+  nameSubmit.addEventListener("click", game.setPlayerNames);
   replayButton.addEventListener("click", game.resetBoard);
   game.createPlayers();
   displayController.init();
