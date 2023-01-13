@@ -75,26 +75,25 @@ const game = (() => {
   const addMove = (event) => {
     let index = event.target.id;
 
-    if (!isOver(index)) {
-      let symbol;
+    let symbol;
 
-      if (turnNumber % 2 === 0) {
-        symbol = player2.getSymbol();
-      } else {
-        symbol = player1.getSymbol();
-      }
+    if (turnNumber % 2 === 0) {
+      symbol = player2.getSymbol();
+    } else {
+      symbol = player1.getSymbol();
+    }
 
-      Gameboard.board[index] = symbol;
-      turnNumber++;
+    Gameboard.board[index] = symbol;
+    turnNumber++;
 
-      displayController.render();
+    displayController.render();
 
-      if (isOver(index)) {
-        htmlBoard.style.pointerEvents = "none";
-        displayController.declareWinner(getPlayerName(turnNumber % 2));
-      } else if (turnNumber === 10) {
-        displayController.declareWinner("Nobody");
-      }
+    if (isOver(index)) {
+      htmlBoard.style.pointerEvents = "none";
+      displayController.declareWinner(getPlayerName(turnNumber % 2));
+    } else if (turnNumber === 10) {
+      htmlBoard.style.pointerEvents = "none";
+      displayController.declareWinner("Nobody");
     }
   };
 
@@ -158,7 +157,7 @@ const game = (() => {
     if (b[index] === "") {
       over = false;
     } else {
-      if (row != 1 && col != 1 && !over) {
+      if ((row != 1 && col != 1 && !over) || (row === 1 && col === 1)) {
         over = checkDiagonals();
       }
 
@@ -210,7 +209,9 @@ const displayController = (() => {
     const winnerText = document.getElementById("winner-text");
     const board = document.getElementById("gameboard");
     board.innerHTML = "";
-    container.removeChild(winnerText);
+    if (winnerText != null) {
+      container.removeChild(winnerText);
+    }
     init();
   };
 
