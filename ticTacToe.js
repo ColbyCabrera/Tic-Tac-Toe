@@ -51,12 +51,15 @@ const game = (() => {
   };
 
   const setPlayerNames = () => {
-    const name1 = document.getElementById("player1").value;
-    const name2 = document.getElementById("player2").value;
+    const name1 = document.getElementById("player1");
+    const name2 = document.getElementById("player2");
 
-    player1.setName(name1);
+    player1.setName(name1.value);
     
-    player2.setName(name2);
+    player2.setName(name2.value);
+
+    name1.value = " ";
+    name2.value = " ";
   };
 
   const getBoard = () => {
@@ -196,13 +199,20 @@ const displayController = (() => {
   };
 
   const clear = () => {
+    const container = document.getElementById("game-container");
+    const winnerText = document.getElementById("winner-text");
     const board = document.getElementById("gameboard");
     board.innerHTML = "";
+    container.removeChild(winnerText);
     init();
   };
 
   const declareWinner = (winner) => {
-    console.log(winner);
+    const container = document.getElementById("game-container");
+    const winnerText = document.createElement("h2");
+    winnerText.textContent = winner + " wins!";
+    winnerText.id = "winner-text";
+    container.appendChild(winnerText);
   };
 
   const render = () => {
