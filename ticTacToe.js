@@ -74,8 +74,8 @@ const game = (() => {
 
   const addMove = (event) => {
     let index = event.target.id;
-
     let symbol;
+    const gridElement = document.getElementById(index);
 
     if (turnNumber % 2 === 0) {
       symbol = player2.getSymbol();
@@ -84,6 +84,7 @@ const game = (() => {
     }
 
     Gameboard.board[index] = symbol;
+    gridElement.style.pointerEvents = "none";
     turnNumber++;
 
     displayController.render();
